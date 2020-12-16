@@ -5,6 +5,7 @@ from definitions import TEST_RESOURCES_FOLDER
 import pytest
 import csv
 import os
+import bs4
 
 
 class TestCSVGenerator:
@@ -49,7 +50,7 @@ class TestCSVGenerator:
             for line in parsed_csv_file:
                 list_count += 1
 
-        assert list_count == 30
+        assert list_count/2 == 30
 
     def test_csv_with_headers(self):
         list_count = 0
@@ -58,7 +59,7 @@ class TestCSVGenerator:
             for line in parsed_csv_file:
                 list_count += 1
 
-        assert list_count == 31
+        assert list_count/2 == 31
 
     def test_csv_without_headers_default_location(self):
         list_count = 0
@@ -67,4 +68,4 @@ class TestCSVGenerator:
             for line in parsed_csv_file:
                 list_count += 1
 
-        assert list_count == 30
+        assert list_count/2 == 30
