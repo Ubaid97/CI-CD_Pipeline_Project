@@ -1,7 +1,11 @@
 import pytest
-from src.itjobswatch_html_readers.itjobswatch_home_page_top_30 import ItJobsWatchHomePageTop30
+#from ..src.itjobswatch_html_readers.itjobswatch_home_page_top_30 import ItJobsWatchHomePageTop30
 from config_manager import itjobswatch_home_page_url, itjobswatch_home_page_test_file, get_test_env_setting
 import bs4
+
+import sys, os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src/itjobswatch_html_readers'))
+import itjobswatch_home_page_top_30
 
 # Tests in this section are thin as we do not have access to the backend to validate
 # They do test that there is no change in expected table size and numbers
@@ -9,9 +13,9 @@ class TestTop30HtmlReader():
     @pytest.fixture()
     def top_30_object(self):
         if get_test_env_setting() == 'live':
-            return ItJobsWatchHomePageTop30(itjobswatch_home_page_url())
+            return itjobswatch_home_page_top_30.ItJobsWatchHomePageTop30(itjobswatch_home_page_url())
         else:
-            return ItJobsWatchHomePageTop30(itjobswatch_home_page_test_file())
+            return itjobswatch_home_page_top_30.ItJobsWatchHomePageTop30(itjobswatch_home_page_test_file())
 
     def test_table_with_class_of_results_exists(self, top_30_object):
         assert top_30_object.home_page_html.find('table', {'class': 'results'}).attrs == {'class': ['results']}

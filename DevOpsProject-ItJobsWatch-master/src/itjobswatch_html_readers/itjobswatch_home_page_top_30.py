@@ -1,12 +1,15 @@
 from bs4 import BeautifulSoup
-from src.http_management.http_manager import HttpManager
+# from src.http_management.http_manager import HttpManager
 from config_manager import itjobswatch_home_page_test_file
 
+import sys, os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'http_management'))
+import http_manager
 
 class ItJobsWatchHomePageTop30:
 
     def __init__(self, file_or_url_address):
-        self._html_manager = HttpManager(file_or_url_address)
+        self._html_manager = http_manager.HttpManager(file_or_url_address)
         self.home_page_html = BeautifulSoup(self._html_manager.html, 'html.parser')
 
     def _get_top_30_table(self):
