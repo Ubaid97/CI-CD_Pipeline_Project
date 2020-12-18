@@ -1,2 +1,2 @@
 - Testing CI
-- Testing CI/CD
+- Testing CI/CD pipeline
