@@ -1,0 +1,37 @@
+---
+# example targetting host_a
+
+
+- hosts: scrapper_test
+# used to define where this playbook will run
+
+  gather_facts: yes
+# Gathers facts/state of machine before running playbook
+
+  become: true
+
+  tasks:
+    - name: update and upgrade
+      apt: upgrade=yes update_cache=yes
+
+    - name: Installing dependencies
+      apt:
+        name:
+          - python
+          - python3
+          - python-pip
+          - python3-pip
+          - python3-venv
+        state: present
+    - name: Installing pip dependencies
+      pip:
+        name:
+          - pytest
+          - requests
+          - bs4
+          - boto
+          - boto3
+          - nose
+          - tornado
+          - awscli
+        state: present
